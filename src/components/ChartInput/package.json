@@ -1,0 +1,6 @@
+{
+  "name": "ChartInput",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ChartInput.js"
+}
