@@ -12,7 +12,7 @@ import emptyFunction from 'fbjs/lib/emptyFunction';
 import s from './App.css';
 import ChartInput from '../ChartInput';
 import Header from '../Header';
-import LineChart from '../LineChart';
+// import LineChart from '../LineChart';
 import Footer from '../Footer';
 
 class App extends Component {
@@ -56,7 +56,6 @@ class App extends Component {
       <div>
         <Header />
         <ChartInput />
-        <LineChart />
         <Footer />
       </div>
     ) : this.props.children;
