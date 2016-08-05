@@ -10,7 +10,7 @@
 import React, { Component, PropTypes } from 'react';
 import emptyFunction from 'fbjs/lib/emptyFunction';
 import s from './App.css';
-import ChartInput from '../ChartInput';
+import ChartContainer from '../ChartContainer';
 import Header from '../Header';
 // import LineChart from '../LineChart';
 import Footer from '../Footer';
@@ -55,7 +55,7 @@ class App extends Component {
     return !this.props.error ? (
       <div>
         <Header />
-        <ChartInput />
+        <ChartContainer />
         <Footer />
       </div>
     ) : this.props.children;

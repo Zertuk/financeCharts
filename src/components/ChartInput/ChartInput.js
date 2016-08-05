@@ -1,19 +1,28 @@
 import React from 'react';
 import rd3 from 'rd3';
 import s from './ChartInput.css';
+import ChartData from '../ChartData/ChartData.js';
 
 class ChartInput extends React.Component {
   constructor() {
     super();
     this.state = {
       name: "ok",
-      principal: 211,
-      interestRate: 0.05,
-      years: 3
+      principal: 100,
+      interestRate: 5,
+      years: 1,
+      compounding: 1
     }
   }
   onSubmit(e) {
     e.preventDefault();
+    console.log(this.state);
+    var chartData = new ChartData(this.state.name,
+                                  parseInt(this.state.principal),
+                                  parseInt(this.state.interestRate), 
+                                  parseInt(this.state.compounding), 
+                                  parseInt(this.state.years));
+    console.log(chartData.compoundInterest())
   }
 
   handleChange(name, e) {
@@ -49,4 +58,4 @@ class ChartInput extends React.Component {
   }
 }
 
-export default class ChartInput
+export default ChartInput

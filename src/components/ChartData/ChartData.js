@@ -1,39 +1,58 @@
-class ChartData {
-  constructor(principal, rate, compounding, years) {
-    this.state = {
-      principal: principal,
-      rate: rate,
-      compounding: compounding,
-      years: years
-    }
+import React from 'react';
+import rd3 from 'rd3';
+
+
+class ChartData extends React.Component {
+  constructor() {
+    super();
+    this.lines = [];
   }
 
-  compoundInterest() {
-    var innerResult = 1 + (this.state.rate / this.state.compounding);
-    var result = this.state.principal * Math.pow(1 + (this.state.rate / this.state.compounding), this.state.years * this.state.compounding);
+  addLineData(line) {
+    this.lines.push(line);
+    this.createCompoundInterestGraph();
+  }
+
+  compoundInterest(data, years) {
+    var innerResult = 1 + (data.interestRate / data.compounding);
+    var result = data.principal * Math.pow(1 + (data.interestRate / data.compounding), years * data.compounding);
     result = result.toFixed(2);
     return result;
   }
 
   createCompoundInterestGraph() {
     var graphInfo = [];
-    for (var i = 0; i < years + 1; i++) {
-      var result = compoundInterest(info, i);
-      console.log(result);
-      console.log(i);
-      var obj = {
-        x: i,
-        y: parseInt(result)
+    for (var j = 0; j < this.lines.length; j++) {
+      console.log(this.lines);
+      for (var i = 0; i < this.lines[j].years + 1; i++) {
+        console.log(this.lines[j].years);
+        var result = this.compoundInterest(this.lines[j], i);
+        console.log(result);
+        var res = {
+          x: i,
+          y: parseInt(result)
+        }
+        graphInfo.push(res);
       }
-      graphInfo.push(obj);
     }
     return graphInfo;
   }
+
+  render() {
+    var LineChart = rd3.LineChart;
+    return (
+      <LineChart
+      legend={true}
+      data={this.createCompoundInterestGraph()}
+      title="Compound Interest"
+      width={"1000"}
+      height={"600"}
+      yAxisLabel="$"
+      xAxisLabel="Years"
+      gridHorizontal={true}
+      domain={{x: [0,5], y: [100,175]}} />
+    );
+  }
 }
 
-
-
-export default class { ChartData }
-
-
-
+export default ChartData
