@@ -8,16 +8,18 @@ class ChartContainer extends React.Component {
     super();
     var data = new ChartData();
     var lineData = {
+      name: "test1",
       principal: 100,
-      interestRate: 5,
-      years: 5,
+      interestRate: 5/100,
+      years: 1,
       compounding: 1,
     }
     data.addLineData(lineData);
-        var lineData2 = {
-      principal: 400,
-      interestRate: 5,
-      years: 5,
+    var lineData2 = {
+      name: "test",
+      principal: 200,
+      interestRate: 5/100,
+      years: 1,
       compounding: 1,
     }
     data.addLineData(lineData2)

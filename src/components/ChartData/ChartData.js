@@ -6,11 +6,25 @@ class ChartData extends React.Component {
   constructor() {
     super();
     this.lines = [];
+    this.lineData = [];
   }
+
+
+
 
   addLineData(line) {
     this.lines.push(line);
-    this.createCompoundInterestGraph();
+    this.newData = this.createCompoundInterestGraph();
+    this.lineData = [];
+    for (var i = 0; i < this.newData.length; i++) {
+      this.lineData[i] = {
+        name: this.lines[i].name,
+        values: this.newData[i],
+        strokeWidth: 1
+      }
+    }
+    console.log(this.lineData);
+    this.render();
   }
 
   compoundInterest(data, years) {
@@ -21,9 +35,9 @@ class ChartData extends React.Component {
   }
 
   createCompoundInterestGraph() {
-    var graphInfo = [];
+    var newData = [];
     for (var j = 0; j < this.lines.length; j++) {
-      console.log(this.lines);
+      var graphInfo = [];
       for (var i = 0; i < this.lines[j].years + 1; i++) {
         console.log(this.lines[j].years);
         var result = this.compoundInterest(this.lines[j], i);
@@ -34,8 +48,10 @@ class ChartData extends React.Component {
         }
         graphInfo.push(res);
       }
+      newData.push(graphInfo);
     }
-    return graphInfo;
+    return newData;
+
   }
 
   render() {
@@ -43,7 +59,7 @@ class ChartData extends React.Component {
     return (
       <LineChart
       legend={true}
-      data={this.createCompoundInterestGraph()}
+      data={this.lineData}
       title="Compound Interest"
       width={"1000"}
       height={"600"}
