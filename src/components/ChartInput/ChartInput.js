@@ -16,13 +16,15 @@ class ChartInput extends React.Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
-    var chartData = new ChartData(this.state.name,
-                                  parseInt(this.state.principal),
-                                  parseInt(this.state.interestRate), 
-                                  parseInt(this.state.compounding), 
-                                  parseInt(this.state.years));
-    console.log(chartData.compoundInterest())
+    var newLine = {
+      name: this.state.name,
+      principal: parseInt(this.state.principal),
+      interestRate: parseInt(this.state.interestRate), 
+      compounding: parseInt(this.state.compounding), 
+      years: parseInt(this.state.years)
+    }
+    console.log(this.props);
+    this.props.onSubmit(newLine)
   }
 
   handleChange(name, e) {

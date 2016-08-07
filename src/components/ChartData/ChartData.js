@@ -1,6 +1,3 @@
-import React from 'react';
-
-
 class ChartData {
   constructor() {
     this.lines = [];
