@@ -18,8 +18,8 @@ class ChartData {
   }
 
   compoundInterest(data, years) {
-    var innerResult = 1 + (data.interestRate / data.compounding);
-    var result = data.principal * Math.pow(1 + (data.interestRate / data.compounding), years * data.compounding);
+    var innerResult = 1 + (data.interestRate/100 / data.compounding);
+    var result = data.principal * Math.pow(1 + (data.interestRate/100 / data.compounding), years * data.compounding);
     result = result.toFixed(2);
     return result;
   }
