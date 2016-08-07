@@ -1,16 +1,10 @@
 import React from 'react';
-import rd3 from 'rd3';
 
 
-class ChartData extends React.Component {
+class ChartData {
   constructor() {
-    super();
     this.lines = [];
-    this.lineData = [];
   }
-
-
-
 
   addLineData(line) {
     this.lines.push(line);
@@ -23,8 +17,7 @@ class ChartData extends React.Component {
         strokeWidth: 1
       }
     }
-    console.log(this.lineData);
-    this.render();
+    return this.lineData;
   }
 
   compoundInterest(data, years) {
@@ -39,9 +32,7 @@ class ChartData extends React.Component {
     for (var j = 0; j < this.lines.length; j++) {
       var graphInfo = [];
       for (var i = 0; i < this.lines[j].years + 1; i++) {
-        console.log(this.lines[j].years);
         var result = this.compoundInterest(this.lines[j], i);
-        console.log(result);
         var res = {
           x: i,
           y: parseInt(result)
@@ -52,22 +43,6 @@ class ChartData extends React.Component {
     }
     return newData;
 
-  }
-
-  render() {
-    var LineChart = rd3.LineChart;
-    return (
-      <LineChart
-      legend={true}
-      data={this.lineData}
-      title="Compound Interest"
-      width={"1000"}
-      height={"600"}
-      yAxisLabel="$"
-      xAxisLabel="Years"
-      gridHorizontal={true}
-      domain={{x: [0,5], y: [100,175]}} />
-    );
   }
 }
 
