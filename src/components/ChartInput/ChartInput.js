@@ -11,6 +11,7 @@ class ChartInput extends React.Component {
       principal: 100,
       interestRate: 5,
       years: 1,
+      difference: 1,
       compounding: 1
     }
   }
@@ -19,17 +20,19 @@ class ChartInput extends React.Component {
     var newLine = {
       name: this.state.name,
       principal: parseInt(this.state.principal),
-      interestRate: parseInt(this.state.interestRate), 
+      interestRate: parseInt(this.state.interestRate),
+      difference: parseInt(this.state.difference), 
       compounding: parseInt(this.state.compounding), 
       years: parseInt(this.state.years)
     }
-    console.log(this.props);
+    console.log(newLine);
     this.props.onSubmit(newLine)
   }
 
   handleChange(name, e) {
     var change = {};
     change[name] = e.target.value;
+    console.log(change);
     this.setState(change);
   }
 
@@ -46,6 +49,9 @@ class ChartInput extends React.Component {
 
           <label>Interest Rate</label>
           <input value = {this.state.interestRate} onChange={this.handleChange.bind(this, "interestRate")} type="number"></input>
+
+          <label>Change</label>
+          <input value = {this.state.difference} onChange={this.handleChange.bind(this, "difference")} type="number"></input>
 
           <label>Compound Rate</label>
           <select></select>

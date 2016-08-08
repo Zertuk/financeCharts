@@ -1,6 +1,7 @@
 import React from 'react';
 import ChartData from '../ChartData/ChartData.js';
 import ChartInput from '../ChartInput/ChartInput.js';
+import s from './ChartContainer.css';
 import rd3 from 'rd3';
 
 
@@ -18,24 +19,6 @@ class ChartContainer extends React.Component {
   }
 
   addNewLine(newLine) {
-        // this.chartData = new ChartData();
-
-    // var lineData = {
-    //   name: "test1",
-    //   principal: 3000,
-    //   interestRate: 5/100,
-    //   years: 10,
-    //   compounding: 1,
-    // }
-    // this.lineData = this.chartData.addLineData(lineData);
-    // var lineData2 = {
-    //   name: "test",
-    //   principal: 2000,
-    //   interestRate: 5/100,
-    //   years: 10,
-    //   compounding: 1,
-    // }
-    // this.lineData = this.chartData.addLineData(lineData2);
     this.lineData = this.chartData.addLineData(newLine);
     this.setState({});
     this.findRange();
@@ -70,9 +53,10 @@ class ChartContainer extends React.Component {
   render() {
      var LineChart = rd3.LineChart;
     return (
-      <div>
-        <ChartInput onSubmit={this.addNewLine.bind(this)} />
+      <div className={s.test}>
+        <ChartInput className={s.third} onSubmit={this.addNewLine.bind(this)} />
         <LineChart
+        className={s.twothird}
         legend={true}
         data={this.lineData}
         title="Compound Interest"
@@ -87,4 +71,5 @@ class ChartContainer extends React.Component {
   }
 }
 
-export default ChartContainer
+export default ChartContainer;
+

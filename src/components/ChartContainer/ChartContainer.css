@@ -1,0 +1,13 @@
+.third {
+	width: 33%;
+	float: left;
+}
+
+.twothird {
+	width: 66%;
+	float: left;
+}
+
+div {
+	background: red;
+}
