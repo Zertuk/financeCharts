@@ -1,8 +1,10 @@
 import React from 'react';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import ChartData from '../ChartData/ChartData.js';
 import ChartInput from '../ChartInput/ChartInput.js';
 import s from './ChartContainer.css';
 import rd3 from 'rd3';
+import cx from 'classnames';
 
 
 
@@ -41,35 +43,30 @@ class ChartContainer extends React.Component {
       }
     }
   }
-
-  onSubmit(e) {
-
-  }
-
-  handleChange(name, e) {
-
-  }
-
   render() {
-     var LineChart = rd3.LineChart;
+    var LineChart = rd3.LineChart;
     return (
-      <div className={s.test}>
-        <ChartInput className={s.third} onSubmit={this.addNewLine.bind(this)} />
-        <LineChart
-        className={s.twothird}
-        legend={true}
-        data={this.lineData}
-        title="Compound Interest"
-        width={"1000"}
-        height={"600"}
-        yAxisLabel="$"
-        xAxisLabel="Years"
-        gridHorizontal={true}
-        domain={{x: [0,this.maxX + 1], y: [this.minY - 10,this.maxY + 10]}} />
+      <div className={s.container}>
+        <div className={s.row}>
+          <div className={cx(s.three, s.columns)}>
+            <ChartInput onSubmit={this.addNewLine.bind(this)} />
+          </div>
+          <div className={cx(s.nine, s.columns)}>
+            <LineChart
+            width={1000}
+            legend={true}
+            data={this.lineData}
+            height={"600"}
+            yAxisLabel="$"
+            xAxisLabel="Years"
+            gridHorizontal={true}
+            domain={{x: [0,this.maxX + 1], y: [this.minY - 10,this.maxY + 10]}} />
+          </div>
+        </div>
       </div>
       );
   }
 }
 
-export default ChartContainer;
+export default withStyles(s)(ChartContainer);
 

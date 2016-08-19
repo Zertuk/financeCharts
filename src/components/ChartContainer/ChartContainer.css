@@ -1,13 +1,5 @@
-.third {
-	width: 33%;
-	float: left;
-}
+@import '../../../node_modules/skeleton-css/css/skeleton.css'; 
 
-.twothird {
-	width: 66%;
-	float: left;
-}
-
-div {
-	background: red;
+input {
+	margin-bottom: 5px;
 }

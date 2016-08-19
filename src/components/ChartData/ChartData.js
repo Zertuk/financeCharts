@@ -5,7 +5,7 @@ class ChartData {
 
   addLineData(line) {
     this.lines.push(line);
-    this.newData = this.debtPayoffGraph();
+    this.newData = this.createCompoundInterestGraph();
     this.lineData = [];
     for (var i = 0; i < this.newData.length; i++) {
       this.lineData[i] = {
@@ -14,6 +14,7 @@ class ChartData {
         strokeWidth: 1
       }
     }
+    console.log(this.lineData);
     return this.lineData;
   }
 
@@ -25,15 +26,19 @@ class ChartData {
     return result;
   }
 
+
   createCompoundInterestGraph() {
     var newData = [];
     for (var j = 0; j < this.lines.length; j++) {
       var graphInfo = [];
+      var adjustedPrincipal = this.lines[j].principal;
+      var prevResult  = this.lines[j].principal;
       for (var i = 0; i < this.lines[j].years + 1; i++) {
-        var result = this.compoundInterest(this.lines[j], i);
+        adjustedPrincipal = adjustedPrincipal + 35;
+        var result = parseInt(this.compoundInterest(this.lines[j], 1, adjustedPrincipal));
         var res = {
           x: i,
-          y: parseInt(result)
+          y: result
         }
         if (i == 0) {
           res.y = this.lines[j].principal

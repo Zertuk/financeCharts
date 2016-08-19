@@ -2,6 +2,8 @@ import React from 'react';
 import rd3 from 'rd3';
 import s from './ChartInput.css';
 import ChartData from '../ChartData/ChartData.js';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+
 
 class ChartInput extends React.Component {
   constructor() {
@@ -37,33 +39,32 @@ class ChartInput extends React.Component {
   }
 
   render() {
-    // return <div>test {this.props.name}</div>;
     return (
-      <div>
-        <form onSubmit={this.onSubmit.bind(this)}>
+      <form onSubmit={this.onSubmit.bind(this)}>
+        <div>
           <label>Name</label>
           <input value = {this.state.name} onChange={this.handleChange.bind(this, "name")} type="text"></input>
-
+        </div>
+        <div>
           <label>Principal</label>
           <input value = {this.state.principal} onChange={this.handleChange.bind(this, "principal")} type="number"></input>
-
+        </div>
+        <div>
           <label>Interest Rate</label>
-          <input value = {this.state.interestRate} onChange={this.handleChange.bind(this, "interestRate")} type="number"></input>
-
-          <label>Change</label>
+          <input className = {s.interest} value = {this.state.interestRate} onChange={this.handleChange.bind(this, "interestRate")} type="number"></input>
+        </div>
+        <div>
+          <label>Annual Contribution</label>
           <input value = {this.state.difference} onChange={this.handleChange.bind(this, "difference")} type="number"></input>
-
-          <label>Compound Rate</label>
-          <select></select>
-
+        </div>
+        <div>
           <label>Years</label>
           <input value = {this.state.years}  onChange={this.handleChange.bind(this, "years")} type="number"></input>
-
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
       );
   }
 }
 
-export default ChartInput
+export default withStyles(s)(ChartInput)
