@@ -2,6 +2,7 @@ import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import ChartData from '../ChartData/ChartData.js';
 import ChartInput from '../ChartInput/ChartInput.js';
+import ChartResult from '../ChartResult/ChartResult.js';
 import s from './ChartContainer.css';
 import rd3 from 'rd3';
 import cx from 'classnames';
@@ -17,13 +18,32 @@ class ChartContainer extends React.Component {
     this.state = {};
     this.lineData = [];
     this.lines = [];
+    this.line = null;
     this.chartData = new ChartData();
+    this.endResult = null;
   }
 
   addNewLine(newLine) {
+    this.line = newLine;
     this.lineData = this.chartData.addLineData(newLine);
     this.setState({});
     this.findRange();
+    this.endResult = findEndResult();
+  }
+
+  findEndResult() {
+    if (this.line) {
+      var total = this.lineData[this.lineData.length - 1].x;
+      var principal = this.line.principal * this.line.years;
+      var interest = total - principal;
+      var endResult = {
+        total: total,
+        principal: principal,
+        interest: interest
+      }
+      return endResult;
+    }
+    return null;
   }
 
 
@@ -50,16 +70,23 @@ class ChartContainer extends React.Component {
         <div className={s.row}>
           <div className={cx(s.three, s.columns)}>
             <ChartInput onSubmit={this.addNewLine.bind(this)} />
+            <ChartResult data={this.endResult}/>
           </div>
           <div className={cx(s.nine, s.columns)}>
             <LineChart
-            width={1000}
+            width='100%'
+            viewBoxObject={{
+              x: 0,
+              y: 0,
+              width: 400,
+              height: 500
+            }}
             legend={true}
             data={this.lineData}
             height={"600"}
             xAxisLabel="Years"
             gridHorizontal={true}
-            domain={{x: [0,this.maxX + 1], y: [this.minY - 10,this.maxY + 10]}} />
+            domain={{x: [0,this.maxX], y: [this.minY, this.maxY + (this.maxY*1/10)]}} />
           </div>
         </div>
       </div>

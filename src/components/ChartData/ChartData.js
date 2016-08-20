@@ -4,6 +4,22 @@ class ChartData {
   }
 
   addLineData(line) {
+    this.lines = [];
+    this.lines.push(line);
+    this.newData = this.createCompoundInterestGraph();
+    this.lineData = [];
+    for (var i = 0; i < this.newData.length; i++) {
+      this.lineData[i] = {
+        name: this.lines[i].name,
+        values: this.newData[i],
+        strokeWidth: 1
+      }
+    }
+    console.log(this.lineData);
+    return this.lineData;
+  }
+
+  OLDaddLineData(line) {
     this.lines.push(line);
     this.newData = this.createCompoundInterestGraph();
     this.lineData = [];
@@ -78,9 +94,6 @@ class ChartData {
     }
     return lineData;
   }
-
-
-
 }
 
 export default ChartData
