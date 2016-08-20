@@ -33,9 +33,11 @@ class ChartData {
       var graphInfo = [];
       var adjustedPrincipal = this.lines[j].principal;
       var prevResult  = this.lines[j].principal;
-      for (var i = 0; i < this.lines[j].years + 1; i++) {
-        adjustedPrincipal = adjustedPrincipal + 35;
+      graphInfo.push({x: 0, y: adjustedPrincipal});
+      for (var i = 1; i < this.lines[j].years + 1; i++) {
+        adjustedPrincipal = prevResult + this.lines[j].difference ;
         var result = parseInt(this.compoundInterest(this.lines[j], 1, adjustedPrincipal));
+        prevResult = result;
         var res = {
           x: i,
           y: result
@@ -59,7 +61,7 @@ class ChartData {
       var adjustedPrincipal = this.lines[j].principal;
       var debtRemaining = true;
       while (debtRemaining) {
-        adjustedPrincipal = prevResult - 35;
+        adjustedPrincipal = prevResult - this.lines[j].difference;
         var result = parseInt(this.compoundInterest(this.lines[j], 1, adjustedPrincipal));
         prevResult = result;
         payoffData.push({

@@ -11,11 +11,7 @@ import React from 'react';
 import App from '../components/App';
 
 // Child routes
-import home from './home';
-import contact from './contact';
-import login from './login';
-import register from './register';
-import content from './content';
+import compound from './compound';
 import error from './error';
 
 export default {
@@ -23,12 +19,8 @@ export default {
   path: '/',
 
   children: [
-    home,
-    contact,
-    login,
-    register,
-    content,
-    error,
+    compound,
+    error
   ],
 
   async action({ next, render, context }) {

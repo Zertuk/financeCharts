@@ -18,7 +18,7 @@ function Header() {
   return (
     <header>
       <nav>
-        <p>this is the header</p>
+        <a href="/compound">Compound Interest Calculator</a>
       </nav>
     </header>
   );

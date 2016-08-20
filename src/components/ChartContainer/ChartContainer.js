@@ -57,7 +57,6 @@ class ChartContainer extends React.Component {
             legend={true}
             data={this.lineData}
             height={"600"}
-            yAxisLabel="$"
             xAxisLabel="Years"
             gridHorizontal={true}
             domain={{x: [0,this.maxX + 1], y: [this.minY - 10,this.maxY + 10]}} />

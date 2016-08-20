@@ -8,14 +8,14 @@
  */
 
 import React from 'react';
-import Contact from './Contact';
+import Compound from './compound';
 
 export default {
 
-  path: '/contact',
+  path: '/compound',
 
   action() {
-    return <Contact />;
+    return <Compound />;
   },
 
 };
