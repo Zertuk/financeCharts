@@ -12,22 +12,24 @@ import cx from 'classnames';
 class ChartContainer extends React.Component {
   constructor() {
     super();
+    this.state = {};
     this.maxX = 0;
     this.maxY = 0;
     this.minY = 0;
-    this.state = {};
     this.lineData = [];
-    this.lines = [];
     this.line = null;
-    this.chartData = new ChartData();
     this.endResult = {
       total: 0,
       principal: 0,
       interest: 0
     };
+    this.chartData = new ChartData();
   }
 
   addNewLine(newLine) {
+    this.maxX = 0;
+    this.maxY = 0;
+    this.minY = 0;
     this.line = newLine;
     this.lineData = this.chartData.addLineData(newLine);
     this.findRange();

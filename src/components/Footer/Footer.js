@@ -10,16 +10,15 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Footer.css';
-import Link from '../Link';
 
 function Footer() {
   return (
     <footer>
       <div className={s.container}>
         <span className={s.spacer}>·</span>
-        <Link className={s.link} to="http://zertukis.com">zertukis</Link>
+        <a className={s.link} href="http://zertukis.com">zertukis</a>
         <span className={s.spacer}>·</span>
-        <Link className={s.link} to="http://zertukis.com">github</Link>
+        <a className={s.link} href="http://github.com/zertuk">github</a>
         <span className={s.spacer}>·</span>
       </div>
     </footer>

@@ -5,11 +5,8 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
 
 class ChartResult extends React.Component {
-  constructor(data) {
+  constructor() {
     super();
-    this.total = data.data.total;
-    this.principal = data.data.principal;
-    this.interest = data.data.interest;
   }
 
   render() {

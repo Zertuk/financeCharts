@@ -22,9 +22,6 @@ import { ErrorPage } from './routes/error/ErrorPage';
 import errorPageStyle from './routes/error/ErrorPage.css';
 import UniversalRouter from 'universal-router';
 import PrettyError from 'pretty-error';
-import passport from './core/passport';
-import models from './data/models';
-import schema from './data/schema';
 import routes from './routes';
 import assets from './assets'; // eslint-disable-line import/no-unresolved
 import { port, auth } from './config';
@@ -54,30 +51,6 @@ app.use(expressJwt({
   credentialsRequired: false,
   getToken: req => req.cookies.id_token,
 }));
-app.use(passport.initialize());
-
-app.get('/login/facebook',
-  passport.authenticate('facebook', { scope: ['email', 'user_location'], session: false })
-);
-app.get('/login/facebook/return',
-  passport.authenticate('facebook', { failureRedirect: '/login', session: false }),
-  (req, res) => {
-    const expiresIn = 60 * 60 * 24 * 180; // 180 days
-    const token = jwt.sign(req.user, auth.jwt.secret, { expiresIn });
-    res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
-    res.redirect('/');
-  }
-);
-
-//
-// Register API middleware
-// -----------------------------------------------------------------------------
-app.use('/graphql', expressGraphQL(req => ({
-  schema,
-  graphiql: true,
-  rootValue: { request: req },
-  pretty: process.env.NODE_ENV !== 'production',
-})));
 
 //
 // Register server-side rendering middleware
@@ -143,9 +116,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 // Launch the server
 // -----------------------------------------------------------------------------
 /* eslint-disable no-console */
-models.sync().catch(err => console.error(err.stack)).then(() => {
   app.listen(port, () => {
     console.log(`The server is running at http://localhost:${port}/`);
   });
-});
 /* eslint-enable no-console */
