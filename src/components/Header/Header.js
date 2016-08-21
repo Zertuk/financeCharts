@@ -17,7 +17,7 @@ import logoUrl from './logo-small.png';
 function Header() {
   return (
     <header>
-      <nav>
+      <nav className={s.container}>
         <a href="/compound">Compound Interest Calculator</a>
       </nav>
     </header>

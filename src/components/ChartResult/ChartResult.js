@@ -5,20 +5,19 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
 
 class ChartResult extends React.Component {
-  constructor() {
+  constructor(data) {
     super();
-    console.log(this.props);
-    // this.total = this.props.data.total;
-    // this.principal = this.props.data.principal;
-    // this.interest = this.props.data.interest;
+    this.total = data.data.total;
+    this.principal = data.data.principal;
+    this.interest = data.data.interest;
   }
 
   render() {
     return (
       <div>
-        // <p>Total: {this.total}</p>
-        // <p>principal: {this.principal}</p>
-        // <p>Interest: {this.interest}</p>
+        <p>Total: {this.state.data.total}</p>
+        <p>principal: {this.state.data.principal}</p>
+        <p>Interest: {this.state.data.interest}</p>
       </div>
       );
   }

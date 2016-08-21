@@ -25,9 +25,6 @@ html {
   line-height: 1.375; /* ~22px */
 }
 
-a {
-  color: #0074c2;
-}
 
 /*
  * Remove text-shadow in selection highlight:
@@ -38,12 +35,14 @@ a {
  */
 
 ::-moz-selection {
-  background: #b3d4fc;
+  background: #FF545F;
+  color: #f9f8f8;
   text-shadow: none;
 }
 
 ::selection {
-  background: #b3d4fc;
+  background: #FF545F;
+  color: #f9f8f8;
   text-shadow: none;
 }
 

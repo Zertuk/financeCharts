@@ -1,0 +1,17 @@
+input, button {
+	width: 100%;
+}
+
+button {
+	background-color: #FF545F;
+	color: #f9f8f8; 
+}
+
+input:active, input:focus  {
+	border-color: #e54b55 !important;
+}
+
+button:hover, button:active {
+	background-color: #e54b55;
+	color: #f9f8f8;
+}

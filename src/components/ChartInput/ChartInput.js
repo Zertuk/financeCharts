@@ -9,7 +9,6 @@ class ChartInput extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: "ok",
       principal: 100,
       interestRate: 5,
       years: 1,
@@ -20,7 +19,6 @@ class ChartInput extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     var newLine = {
-      name: this.state.name,
       principal: parseInt(this.state.principal),
       interestRate: parseInt(this.state.interestRate),
       difference: parseInt(this.state.difference), 
@@ -41,10 +39,6 @@ class ChartInput extends React.Component {
   render() {
     return (
       <form onSubmit={this.onSubmit.bind(this)}>
-        <div>
-          <label>Name</label>
-          <input value = {this.state.name} onChange={this.handleChange.bind(this, "name")} type="text"></input>
-        </div>
         <div>
           <label>Principal</label>
           <input value = {this.state.principal} onChange={this.handleChange.bind(this, "principal")} type="number"></input>

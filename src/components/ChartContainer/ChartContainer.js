@@ -20,21 +20,27 @@ class ChartContainer extends React.Component {
     this.lines = [];
     this.line = null;
     this.chartData = new ChartData();
-    this.endResult = null;
+    this.endResult = {
+      total: 0,
+      principal: 0,
+      interest: 0
+    };
   }
 
   addNewLine(newLine) {
     this.line = newLine;
     this.lineData = this.chartData.addLineData(newLine);
-    this.setState({});
     this.findRange();
-    this.endResult = findEndResult();
+    this.endResult = this.findEndResult();
+    this.setState({});
   }
+
+
 
   findEndResult() {
     if (this.line) {
-      var total = this.lineData[this.lineData.length - 1].x;
-      var principal = this.line.principal * this.line.years;
+      var total = this.lineData[0].values[this.lineData[0].values.length - 1].y;
+      var principal = this.line.principal + (this.line.difference * this.line.years);
       var interest = total - principal;
       var endResult = {
         total: total,
@@ -70,7 +76,11 @@ class ChartContainer extends React.Component {
         <div className={s.row}>
           <div className={cx(s.three, s.columns)}>
             <ChartInput onSubmit={this.addNewLine.bind(this)} />
-            <ChartResult data={this.endResult}/>
+                  <div>
+                    <p>Total: ${this.endResult.total}</p>
+                    <p>principal: ${this.endResult.principal}</p>
+                    <p>Interest: ${this.endResult.interest}</p>
+                  </div>
           </div>
           <div className={cx(s.nine, s.columns)}>
             <LineChart
@@ -81,7 +91,6 @@ class ChartContainer extends React.Component {
               width: 400,
               height: 500
             }}
-            legend={true}
             data={this.lineData}
             height={"600"}
             xAxisLabel="Years"
